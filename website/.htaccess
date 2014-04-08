@@ -1,3 +1,12 @@
+# Block access to directories without a default document.
+# You should leave the following uncommented, as you shouldn't
+# allow anyone to surf through every directory on your server which
+# may includes rather private places such as the CMS's directories.
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+# Rewrite `http://my_website.com/index.php?foo/bar` to `http://my_website.com/foo/bar'
 <IfModule mod_rewrite.c>
     RewriteEngine on
     RewriteBase /website/

@@ -5,7 +5,7 @@
 class Route {
 
     private static $routes = array();
-    
+
     private function __construct() {}
     private function __clone() {}
 
@@ -14,6 +14,12 @@ class Route {
     }
 
     public static function get($patterns, $callback) {
+        $url = $_SERVER['REQUEST_URI'];
+        $base = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+        if(strpos($url, $base) === 0) {
+            $url = substr($url, strlen($base));
+        }
+        $url = trim($url, '/');
         if(is_array($patterns)) {
             foreach($patterns as $pattern) {
                 $pattern = '#^' . self::fix($pattern) . '$#';
@@ -23,15 +29,6 @@ class Route {
             $pattern = '#^' . self::fix($patterns) . '$#';
             self::$routes[$pattern] = $callback;
         }
-    }
-
-    public static function execute() {
-        $url = $_SERVER['REQUEST_URI'];
-        $base = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-        if(strpos($url, $base) === 0) {
-            $url = substr($url, strlen($base));
-        }
-        $url = trim($url, '/');
         foreach(self::$routes as $pattern => $callback) {
             if(preg_match($pattern, $url, $params)) {
                 array_shift($params);

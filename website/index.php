@@ -75,14 +75,6 @@ Route::get("", function() use($host) {
 });
 
 /*!
- * Execute the URL matching!
- */
-Route::execute();
-
-
-
-
-/*!
  * Fallback to 404 page if nothing matched!
  */
 header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
