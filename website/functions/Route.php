@@ -1,6 +1,6 @@
 <?php
 
-/*! Simple PHP Router */
+/* Simple PHP Router */
 
 class Route {
 
@@ -9,7 +9,7 @@ class Route {
     private function __construct() {}
     private function __clone() {}
 
-    private function fix($str) {
+    private static function fix($str) {
         return str_replace(array(':any', ':num'), array('.[^/]*?', '\d+'), $str);
     }
 
