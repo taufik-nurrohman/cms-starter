@@ -2,13 +2,13 @@
 
 include 'functions/Route.php';
 
-/*!
+/**
  * Define our home URL
  */
 $base = trim(dirname($_SERVER['SCRIPT_NAME']), '/');
 $host = 'http://' . trim($_SERVER['HTTP_HOST'], '/') . (empty($base) ? "" : '/' . $base);
 
-/*!
+/**
  * Index page => `blog`, `blog/1`
  */
 Route::get(array('blog', 'blog/(:num)'), function($offset = 1) use($host) {
@@ -17,7 +17,7 @@ Route::get(array('blog', 'blog/(:num)'), function($offset = 1) use($host) {
     exit;
 });
 
-/*!
+/**
  * Category page => `category/category-slug`, `category/category-slug/1`
  */
 Route::get(array('category/(:any)', 'category/(:any)/(:num)'), function($slug = "", $offset = 1) use($host) {
@@ -26,7 +26,7 @@ Route::get(array('category/(:any)', 'category/(:any)/(:num)'), function($slug = 
     exit;
 });
 
-/*!
+/**
  * Article page => `article/article-slug`
  */
 Route::get('article/(:any)', function($slug = "") use($host) {
@@ -42,7 +42,7 @@ Route::get('article/(:any)', function($slug = "") use($host) {
     }
 });
 
-/*!
+/**
  * User submitting a search query
  */
 Route::get('search', function() use($host) {
@@ -55,7 +55,7 @@ Route::get('search', function() use($host) {
     }
 });
 
-/*!
+/**
  * Search page => `search/search-query`, `search/search-query/1`
  */
 Route::get(array('search/(:any)', 'search/(:any)/(:num)'), function($query = "", $offset = 1) use($host) {
@@ -65,7 +65,7 @@ Route::get(array('search/(:any)', 'search/(:any)/(:num)'), function($query = "",
     exit;
 });
 
-/*!
+/**
  * Home page => `/`
  */
 Route::get("", function() use($host) {
@@ -74,7 +74,12 @@ Route::get("", function() use($host) {
     exit;
 });
 
-/*!
+/**
+ * Do routing!
+ */
+Route::execute();
+
+/**
  * Fallback to 404 page if nothing matched!
  */
 header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
