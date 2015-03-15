@@ -6,15 +6,14 @@
   </head>
   <body>
     <ul>
-      <li><a href="<?php echo $host; ?>">Home</a></li>
-      <li><a href="<?php echo $host; ?>/blog">Blog</a></li>
-      <li><a href="<?php echo $host; ?>/category/foo-bar">Category 1</a></li>
-      <li><a href="<?php echo $host; ?>/category/bar-baz">Category 2</a></li>
-      <li><a href="<?php echo $host; ?>/article/lorem-ipsum-1">Article 1</a></li>
-      <li><a href="<?php echo $host; ?>/article/lorem-ipsum-2">Article 2</a></li>
-      <li><a href="<?php echo $host; ?>/article/asdfasdf">Article 404</a></li>
+      <li><a href="<?php echo $url_home; ?>">Home</a></li>
+      <li><a href="<?php echo $url_home; ?>/blog">Blog</a></li>
+      <li><a href="<?php echo $url_home; ?>/about">About</a></li>
+      <li><a href="<?php echo $url_home; ?>/category/foo-bar">Category 1</a></li>
+      <li><a href="<?php echo $url_home; ?>/category/baz-qux">Category 2</a></li>
+      <li><a href="<?php echo $url_home; ?>/article/asdfasdf">Article 404</a></li>
     </ul>
-    <form method="post" action="<?php echo $host; ?>/search">
+    <form action="<?php echo $url_home; ?>/search" method="post">
       <input type="text" name="q" value="<?php echo isset($query) ? $query : ""; ?>">
       <button type="submit">Search</button>
     </form>

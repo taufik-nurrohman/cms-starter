@@ -9,7 +9,6 @@
 # Rewrite `http://my_website.com/index.php?foo/bar` to `http://my_website.com/foo/bar'
 <IfModule mod_rewrite.c>
     RewriteEngine on
-    RewriteBase /website/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ index.php?$1 [L,QSA]
